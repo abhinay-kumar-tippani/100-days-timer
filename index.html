@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100-Day Countdown Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .countdown {
+      display: flex;
+      gap: 30px;
+      font-size: 2rem;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .time-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+    .time-box:hover {
+      transform: scale(1.05);
+    }
+    .number {
+      font-size: 3rem;
+      color: #00ffcc;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown to My 100-Day Goal</h1>
+  <div class="countdown">
+    <div class="time-box">
+      <div class="number" id="days">0</div>
+      Days
+    </div>
+    <div class="time-box">
+      <div class="number" id="hours">0</div>
+      Hours
+    </div>
+    <div class="time-box">
+      <div class="number" id="minutes">0</div>
+      Minutes
+    </div>
+    <div class="time-box">
+      <div class="number" id="seconds">0</div>
+      Seconds
+    </div>
+  </div>
+
+  <script>
+    const MS_IN_SECOND = 1000;
+    const MS_IN_MINUTE = MS_IN_SECOND * 60;
+    const MS_IN_HOUR = MS_IN_MINUTE * 60;
+    const MS_IN_DAY = MS_IN_HOUR * 24;
+
+    function getStartDate() {
+      let start = localStorage.getItem('countdownStart');
+      if (!start) {
+        const now = new Date();
+        localStorage.setItem('countdownStart', now);
+        return now;
+      }
+      return new Date(start);
+    }
+
+    const startDate = getStartDate();
+    const endDate = new Date(startDate.getTime() + 100 * MS_IN_DAY);
+
+    function updateCountdown() {
+      const now = new Date();
+      const remaining = endDate - now;
+
+      const days = Math.floor(remaining / MS_IN_DAY);
+      const hours = Math.floor((remaining % MS_IN_DAY) / MS_IN_HOUR);
+      const minutes = Math.floor((remaining % MS_IN_HOUR) / MS_IN_MINUTE);
+      const seconds = Math.floor((remaining % MS_IN_MINUTE) / MS_IN_SECOND);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
