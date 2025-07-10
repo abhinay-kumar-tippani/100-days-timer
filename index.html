@@ -1,32 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>100-Day Countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-      font-family: 'Orbitron', sans-serif;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 40px;
+  animation: slideDown 1.2s ease-out;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px #00aaff;
+}
+
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.time-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 35px;
+  min-width: 130px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 170, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  font-size: 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.time-box:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px #00aaff;
+}
+
+.number {
+  font-size: clamp(3rem, 6vw, 4rem);
+  color: #00aaff;
+  animation: pulse 2s infinite ease-in-out;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+  .time-box {
+    padding: 25px;
+    min-width: 100px;
+    font-size: 1rem;
+  }
+  .number {
+    font-size: 3rem;
+  }
+}
+
     h1 {
       font-size: 3rem;
       margin-bottom: 40px;
       animation: slideDown 1.8s ease;
     }
+
     .countdown {
       display: flex;
       flex-wrap: wrap;
@@ -34,58 +109,101 @@
       gap: 30px;
       animation: fadeIn 2s ease-in-out;
     }
+
     .time-box {
       background: rgba(255, 255, 255, 0.08);
       padding: 30px;
       min-width: 120px;
       border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 170, 255, 0.4);
+      /* soft blue glow */
       transition: all 0.3s ease;
       position: relative;
       font-size: 1.2rem;
     }
+
     .time-box:hover {
       transform: scale(1.07);
-      box-shadow: 0 0 25px #00ffcc;
+      box-shadow: 0 0 25px #00aaff;
     }
+
     .number {
       font-size: 3.5rem;
-      color: #00ffcc;
+      color: #00aaff;
+      /* vivid blue shade */
       animation: pulse 2s infinite;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
+
     @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-40px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
     }
+
     @media (max-width: 500px) {
-      h1 { font-size: 2rem; }
+      h1 {
+        font-size: 2rem;
+      }
+
       .time-box {
         padding: 25px;
         min-width: 100px;
         font-size: 1rem;
       }
+
       .number {
         font-size: 3rem;
       }
     }
   </style>
 </head>
+
 <body>
   <div>
     <h1>Countdown to My 100-Days Goal</h1>
     <div class="countdown">
-      <div class="time-box"><div class="number" id="days">0</div>Days</div>
-      <div class="time-box"><div class="number" id="hours">0</div>Hours</div>
-      <div class="time-box"><div class="number" id="minutes">0</div>Minutes</div>
-      <div class="time-box"><div class="number" id="seconds">0</div>Seconds</div>
+      <div class="time-box">
+        <div class="number" id="days">0</div>Days
+      </div>
+      <div class="time-box">
+        <div class="number" id="hours">0</div>Hours
+      </div>
+      <div class="time-box">
+        <div class="number" id="minutes">0</div>Minutes
+      </div>
+      <div class="time-box">
+        <div class="number" id="seconds">0</div>Seconds
+      </div>
     </div>
   </div>
 
@@ -127,4 +245,5 @@
     updateCountdown();
   </script>
 </body>
+
 </html>
