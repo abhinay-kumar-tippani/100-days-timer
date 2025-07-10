@@ -14,56 +14,73 @@
 }
 
 body {
-  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #1e2a38 0%, #090e20 100%);
   font-family: 'Orbitron', sans-serif;
-  color: #fff;
+  color: #ffffff;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
   padding: 20px;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 40px;
-  animation: slideDown 1.2s ease-out;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  margin-bottom: 35px;
   color: #ffffff;
-  text-shadow: 2px 2px 8px #00aaff;
+  text-shadow: 0 0 20px rgba(0, 170, 255, 0.8);
+  animation: slideDown 1.3s ease-out;
+  letter-spacing: 2px;
 }
 
 .countdown {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 35px;
   animation: fadeIn 2s ease-in-out;
 }
 
 .time-box {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  padding: 35px;
-  min-width: 130px;
-  border-radius: 24px;
-  box-shadow: 0 10px 25px rgba(0, 170, 255, 0.4);
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  min-width: 140px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.4), 0 0 40px rgba(0, 170, 255, 0.2) inset;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   font-size: 1.3rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.time-box::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle, rgba(0,170,255,0.2), transparent);
+  animation: rotateLight 10s linear infinite;
+  z-index: 0;
 }
 
 .time-box:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 30px #00aaff;
+  box-shadow: 0 0 40px #00aaff;
 }
 
 .number {
-  font-size: clamp(3rem, 6vw, 4rem);
-  color: #00aaff;
-  animation: pulse 2s infinite ease-in-out;
+  font-size: clamp(3.5rem, 7vw, 5rem);
+  color: #00ccff;
+  animation: floatDigit 3s ease-in-out infinite;
   font-weight: bold;
+  z-index: 1;
+  position: relative;
 }
 
 @keyframes fadeIn {
@@ -76,115 +93,30 @@ h1 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.07); }
+@keyframes floatDigit {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes rotateLight {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media (max-width: 600px) {
   h1 {
-    font-size: 2.2rem;
-    margin-bottom: 30px;
+    font-size: 2rem;
+    margin-bottom: 25px;
   }
   .time-box {
-    padding: 25px;
+    padding: 28px;
     min-width: 100px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .number {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 40px;
-      animation: slideDown 1.8s ease;
-    }
-
-    .countdown {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .time-box {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 30px;
-      min-width: 120px;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 170, 255, 0.4);
-      /* soft blue glow */
-      transition: all 0.3s ease;
-      position: relative;
-      font-size: 1.2rem;
-    }
-
-    .time-box:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 25px #00aaff;
-    }
-
-    .number {
-      font-size: 3.5rem;
-      color: #00aaff;
-      /* vivid blue shade */
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-40px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .time-box {
-        padding: 25px;
-        min-width: 100px;
-        font-size: 1rem;
-      }
-
-      .number {
-        font-size: 3rem;
-      }
-    }
   </style>
 </head>
 
